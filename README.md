@@ -40,7 +40,9 @@ None currently.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.2
+
+ - Fixed a bug where the counterpart creation rules were not read correctly from the settings.
 
 ### 0.0.1
 

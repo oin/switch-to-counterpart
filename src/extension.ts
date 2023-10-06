@@ -30,10 +30,10 @@ function findCounterpartFilename(counterpartCreationRules: CounterpartCreationRu
 		let newCounterpart = undefined;
 		let newCounterpartPriority = 0;
 		if(str.endsWith(from)) {
-			newCounterpart = str.slice(0, -from.length) + to;
+			newCounterpart = filename.slice(0, -from.length) + to;
 			newCounterpartPriority = rule.languageId? 4 : 2;
 		} else if(str.endsWith(to)) {
-			newCounterpart = str.slice(0, -to.length) + from;
+			newCounterpart = filename.slice(0, -to.length) + from;
 			newCounterpartPriority = rule.languageId? 3 : 1;
 		}
 		
@@ -83,7 +83,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// At this point, we couldn't find an existing counterpart.
 
 			// Figure out what the counterpart filename would be.
-			const counterpartCreationRules = vscode.workspace.getConfiguration("switch-to-counterpart").get<CounterpartCreationRule[]>("counterpartCreationRules") ?? [];
+			const counterpartCreationRules = vscode.workspace.getConfiguration("switch-to-counterpart").get<CounterpartCreationRule[]>("creationRules") ?? [];
 			const counterpartFilename = findCounterpartFilename(counterpartCreationRules, activeFilename, activeLanguageId);
 			if(!counterpartFilename?.length) {
 				return;

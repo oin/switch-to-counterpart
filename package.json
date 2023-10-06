@@ -2,7 +2,7 @@
   "name": "switch-to-counterpart",
   "displayName": "Switch To Counterpart",
   "description": "Quickly switch between files with the same name but different extensions, like .c/.h",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.83.0"
   },
