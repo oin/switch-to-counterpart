@@ -1,0 +1,98 @@
+{
+  "name": "switch-to-counterpart",
+  "displayName": "Switch To Counterpart",
+  "description": "Quickly switch between files with the same name but different extensions, like .c/.h",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "switch-to-counterpart.switch",
+        "title": "Switch To Counterpart"
+      }
+    ],
+    "configuration": {
+      "title": "Switch To Counterpart",
+      "properties": {
+        "switch-to-counterpart.creationRules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "title": "Creation Rule",
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "The extension of the file you're switching from (example: .h)"
+              },
+              "to": {
+                "type": "string",
+                "description": "The extension of the file you're switching to (example: .c)"
+              },
+              "languageId": {
+                "type": "string",
+                "description": "The ID of the language that must be active for the rule to match (example: objective-c)"
+              }
+            }
+          },
+          "description": "Rules for creating counterpart files if they don't exist",
+          "default": [
+            {
+              "from": ".h",
+              "to": ".c"
+            },
+            {
+              "from": ".h",
+              "to": ".m",
+              "languageId": "objective-c"
+            },
+            {
+              "from": ".h",
+              "to": ".mm",
+              "languageId": "objective-cpp"
+            },
+            {
+              "from": ".hpp",
+              "to": ".cpp"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.83.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
+    "esbuild": "^0.19.4",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  }
+}
