@@ -9,8 +9,16 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "author": {
+    "name": "join"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oin/vscode-switch-to-counterpart"
+  },
   "main": "./out/extension.js",
+  "activationEvents": [],
   "contributes": {
     "commands": [
       {
