@@ -40,6 +40,10 @@ None currently.
 
 ## Release Notes
 
+### 0.0.3
+
+ - Fixed a bug where a folder could be chosen as a counterpart.
+
 ### 0.0.2
 
  - Fixed a bug where the counterpart creation rules were not read correctly from the settings.

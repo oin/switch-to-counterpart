@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const activeFileDirectory = activeFileSplit.join("/");
 
 		vscode.workspace.fs.readDirectory(vscode.Uri.file(activeFileDirectory)).then((directoryFiles) => {
-			const directoryFilenames = directoryFiles.map((file) => file[0]);
+			const directoryFilenames = directoryFiles.filter((file) => file[1] === vscode.FileType.File).map((file) => file[0]);
 
 			const filenamesWithCommonPrefix = findWithCommonPrefix(removeLastExtension(activeFilename), directoryFilenames);
 
